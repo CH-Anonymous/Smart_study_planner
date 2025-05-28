@@ -12,15 +12,14 @@ import numpy as np
 import os # For checking file existence
 
 import nltk
-from nltk.corpus import stopwords
 
-# Fix: ensure 'stopwords' is available
-try:
-    nltk.data.find("corpora/stopwords")
-except LookupError:
-    nltk.download("stopwords")
+# Ensure required NLTK resources are available
+for resource in ["punkt", "stopwords"]:
+    try:
+        nltk.data.find(f"tokenizers/{resource}" if resource == "punkt" else f"corpora/{resource}")
+    except LookupError:
+        nltk.download(resource)
 
-STOPWORDS = set(stopwords.words('english'))
 
 
 
