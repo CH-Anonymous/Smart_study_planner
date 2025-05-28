@@ -40,7 +40,7 @@ def load_tasks():
         try:
             df = pd.read_csv(DATABASE_FILE)
             # Ensure correct data types after loading
-            df['Due Date'] = pd.to_datetime(df['Due Date'])
+            df['Due Date'] = pd.to_datetime(df['Due Date']).dt.date  # Remove timestamp, keep only date
 
             # Add new columns if they don't exist (for backward compatibility)
             if 'Actual_AI_Priority' not in df.columns:
@@ -206,7 +206,7 @@ with st.sidebar:
                     new_task = {
                         'Task Name': task_name,
                         'Course': course,
-                        'Due Date':due_date,
+                        'Due Date': due_date,  # Use date only, no timestamp
                         'Effort': effort,
                         'Type': task_type,
                         'User Priority': user_priority,
@@ -242,7 +242,7 @@ else:
         elif len(df_tasks) >= 5: # If there are enough tasks but not enough feedback yet
              st.info("💡 Once you mark 5 or more tasks complete and provide feedback, the AI will start learning your personal prioritization style!")
 
-    # Update AI Priority for all *pending* tasks using the trained model if model is available
+    # Update AI Priority for all pending tasks using the trained model if model is available
     if model:
         # Create a copy to avoid SettingWithCopyWarning
         df_tasks_copy = df_tasks.copy() 
@@ -293,7 +293,7 @@ if not df_tasks.empty:
 
     if procrastination_tasks:
         for task_name in procrastination_tasks:
-            st.warning(f"**{task_name}** – This task seems like a 'start' or 'plan' task. Break it down or set a small, actionable goal! 🐢")
+            st.warning(f"{task_name}** – This task seems like a 'start' or 'plan' task. Break it down or set a small, actionable goal! 🐢")
     else:
         st.info("No immediate signs of procrastination detected among your high-priority tasks. You're crushing it! 🎉")
 else:
@@ -318,9 +318,9 @@ with col1:
         current_task_row = df_tasks[df_tasks['Task Name'] == selected_task_name_complete].iloc[0]
 
         with st.form("feedback_form"):
-            st.markdown(f"**Feedback for: '{selected_task_name_complete}'**")
-            actual_priority_feedback = st.selectbox("What was its *actual* importance/priority?", ALL_AI_PRIORITIES)
-            actual_effort_feedback = st.selectbox("How was the *actual* effort compared to your estimate?", ['Shorter', 'As Estimated', 'Longer'])
+            st.markdown(f"*Feedback for: '{selected_task_name_complete}'*")
+            actual_priority_feedback = st.selectbox("What was its actual importance/priority?", ALL_AI_PRIORITIES)
+            actual_effort_feedback = st.selectbox("How was the actual effort compared to your estimate?", ['Shorter', 'As Estimated', 'Longer'])
             
             feedback_submitted = st.form_submit_button("Submit Feedback & Complete Task ✅")
 
@@ -337,11 +337,11 @@ with col1:
         st.info("No pending tasks to mark complete or provide feedback for! ✨")
 
 with col2:
-    st.markdown("#### 🗑️ Delete Task")
+    st.markdown("#### 🗑 Delete Task")
     tasks_to_delete = df_tasks['Task Name'].tolist()
     if tasks_to_delete:
         selected_task_to_delete = st.selectbox("Which task do you want to remove?", tasks_to_delete, key="delete_task")
-        if st.button("Delete Selected Task 🗑️"):
+        if st.button("Delete Selected Task 🗑"):
             with st.spinner(f"Deleting '{selected_task_to_delete}'..."):
                 df_tasks = df_tasks[df_tasks['Task Name'] != selected_task_to_delete].reset_index(drop=True)
                 save_tasks(df_tasks)
@@ -351,4 +351,4 @@ with col2:
         st.info("No tasks to delete.")
 
 st.markdown("---")
-st.caption("Built with ❤️ and AI for productive studying.")
+st.caption("Built with ❤ and AI for productive studying.")
