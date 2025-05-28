@@ -11,6 +11,10 @@ import re
 import numpy as np
 import os # For checking file existence
 
+# Download necessary NLTK data files
+nltk.download('punkt')
+nltk.download('stopwords')
+
 # Ensure required NLTK data is available
 try:
     _ = stopwords.words('english')
