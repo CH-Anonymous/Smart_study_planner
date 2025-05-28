@@ -47,13 +47,13 @@ streamlit run smart_study_planner.py
 
 ```
 smart-study-planner/
-├── .streamlit/             
-│
-├── LICENSE                
-├── readme.md                
-├── requirements.txt       
-├── smart_study_planner.py  
-├── tasks.csv                
+├── .streamlit/
+│   └── config.toml
+├── LICENSE
+├── readme.md
+├── requirements.txt
+├── smart_study_planner.py
+├── tasks.csv
 
 ```
 
