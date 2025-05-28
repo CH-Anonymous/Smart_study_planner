@@ -4,21 +4,22 @@ from datetime import datetime, timedelta, date # Ensure 'date' is imported
 from sklearn.model_selection import train_test_split
 from sklearn.linear_model import LogisticRegression
 from sklearn.preprocessing import LabelEncoder
-import re
 import numpy as np
-import nltk
 import os
-from nltk.tokenize import word_tokenize
-from nltk.corpus import stopwords
+import re
 
-# Set up persistent nltk_data path
-nltk_data_path = os.path.join(os.path.dirname(__file__), 'nltk_data')
-os.makedirs(nltk_data_path, exist_ok=True)
-nltk.data.path.append(nltk_data_path)
+# Basic English stopwords list
+STOPWORDS = set([
+    "the", "is", "in", "at", "to", "and", "a", "of", "on", "for", "with",
+    "that", "this", "as", "it", "by", "from", "an", "be", "are", "or", "was"
+])
 
-# Download required datasets into that path
-nltk.download('punkt', download_dir=nltk_data_path)
-nltk.download('stopwords', download_dir=nltk_data_path)
+def extract_keywords(text):
+    # Lowercase and remove non-alphabetic characters
+    text = text.lower()
+    words = re.findall(r'\b[a-z]{2,}\b', text)
+    keywords = [word for word in words if word not in STOPWORDS]
+    return keywords
 
 
 # --- Configuration ---
