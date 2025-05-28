@@ -8,10 +8,9 @@ import numpy as np
 import os
 import re
 
-# Basic English stopwords list
 STOPWORDS = set([
     "the", "is", "in", "at", "to", "and", "a", "of", "on", "for", "with",
-    "that", "this", "as", "it", "by", "from", "an", "be", "are", "or", "english", "was"
+    "that", "this", "as", "it", "by", "from", "an", "be", "are", "or", "was"
 ])
 
 def extract_keywords(text):
@@ -20,6 +19,7 @@ def extract_keywords(text):
     words = re.findall(r'\b[a-z]{2,}\b', text)
     keywords = [word for word in words if word not in STOPWORDS]
     return keywords
+
 
 
 # --- Configuration ---
