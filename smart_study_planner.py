@@ -73,7 +73,7 @@ def calculate_days_until_due(due_date):
 def extract_keywords(text):
     """Extracts keywords from task description (simple NLP)."""
     text = text.lower()
-    words = word_tokenize(text)
+    words = re.findall(r'\b[a-z]{2,}\b', text.lower())
     filtered_words = [word for word in words if word.isalnum() and word not in STOPWORDS]
     return ", ".join(filtered_words)
 
