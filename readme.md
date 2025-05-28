@@ -46,11 +46,15 @@ streamlit run smart_study_planner.py
 ## 📁 Project Structure
 
 ```
-smart_study_planner/
-├── smart_study_planner.py         # Main application script
-├── tasks.csv                      # Data file storing tasks
-└── .streamlit/
-    └── config.toml                # Streamlit app configuration
+smart-study-planner/
+├── .streamlit/             
+│
+├── LICENSE                
+├── readme.md                
+├── requirements.txt       
+├── smart_study_planner.py  
+├── tasks.csv                
+
 ```
 
 ## 🙋 Author
