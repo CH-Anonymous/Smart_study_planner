@@ -24,7 +24,6 @@ def extract_keywords(text):
 
 # --- Configuration ---
 DATABASE_FILE = 'tasks.csv'
-STOPWORDS = set(stopwords.words('english'))
 PROCRASTINATION_KEYWORDS = ["start", "research", "plan", "think about", "figure out", "conceptualize"]
 
 # Define all possible categories for consistent encoding
