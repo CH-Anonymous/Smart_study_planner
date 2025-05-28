@@ -20,7 +20,7 @@ A productivity-focused Smart Study Planner application built using **Python** an
 ### 1. Clone the repository
 
 ```bash
-git clone https://github.com/yourusername/smart_study_planner.git
+git clone https://github.com/CH-Anonymous/smart_study_planner.git
 cd smart_study_planner
 ````
 
