@@ -1,0 +1,6 @@
+[theme]
+primaryColor="#FF4B4B" # A bright, energetic red/coral for accent
+backgroundColor="#FFFFFF" # Pure white background for a clean base
+secondaryBackgroundColor="#F5F5F5" # Very light gray for sidebar
+textColor="#2C3E50" # Dark blue-gray for text
+font="sans serif"
