@@ -4,21 +4,34 @@ from datetime import datetime, timedelta, date # Ensure 'date' is imported
 from sklearn.model_selection import train_test_split
 from sklearn.linear_model import LogisticRegression
 from sklearn.preprocessing import LabelEncoder
-import nltk
-from nltk.corpus import stopwords
-from nltk.tokenize import word_tokenize
 import re
 import numpy as np
 import os # For checking file existence
+import re
 
-import nltk
+# Basic stopwords set to filter out common words
+STOPWORDS = {
+    'i', 'me', 'my', 'myself', 'we', 'our', 'ours', 'ourselves', 'you', 'your',
+    'yours', 'yourself', 'yourselves', 'he', 'him', 'his', 'himself', 'she',
+    'her', 'hers', 'herself', 'it', 'its', 'itself', 'they', 'them', 'their',
+    'theirs', 'themselves', 'what', 'which', 'who', 'whom', 'this', 'that',
+    'these', 'those', 'am', 'is', 'are', 'was', 'were', 'be', 'been', 'being',
+    'have', 'has', 'had', 'having', 'do', 'does', 'did', 'doing', 'a', 'an',
+    'the', 'and', 'but', 'if', 'or', 'because', 'as', 'until', 'while', 'of',
+    'at', 'by', 'for', 'with', 'about', 'against', 'between', 'into', 'through',
+    'during', 'before', 'after', 'above', 'below', 'to', 'from', 'up', 'down',
+    'in', 'out', 'on', 'off', 'over', 'under', 'again', 'further', 'then',
+    'once', 'here', 'there', 'when', 'where', 'why', 'how', 'all', 'any',
+    'both', 'each', 'few', 'more', 'most', 'other', 'some', 'such', 'no',
+    'nor', 'not', 'only', 'own', 'same', 'so', 'than', 'too', 'very'
+}
 
-# Ensure required NLTK resources are available
-for resource in ["punkt", "stopwords"]:
-    try:
-        nltk.data.find(f"tokenizers/{resource}" if resource == "punkt" else f"corpora/{resource}")
-    except LookupError:
-        nltk.download(resource)
+def extract_keywords(text):
+    # Use regex to extract words
+    words = re.findall(r'\b\w+\b', text.lower())
+    # Filter out stopwords
+    return [word for word in words if word not in STOPWORDS]
+
 
 
 
