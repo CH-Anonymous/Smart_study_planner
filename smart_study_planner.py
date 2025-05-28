@@ -11,26 +11,19 @@ import re
 import numpy as np
 import os # For checking file existence
 
-from nltk.tokenize import PunktSentenceTokenizer, word_tokenize
+from nltk.tokenize import word_tokenize
 import nltk
 
-# Ensure Punkt is available
+# Ensure proper punkt resource is available
 try:
-    nltk.data.find('tokenizers/punkt')
+    nltk.data.find("tokenizers/punkt")
 except LookupError:
-    nltk.download('punkt')
-
-# Use the default tokenizer, don't specify language
-sentence_tokenizer = PunktSentenceTokenizer()
+    nltk.download("punkt")
 
 def extract_keywords(text):
-    try:
-        sentences = sentence_tokenizer.tokenize(text)
-        words = [word for sent in sentences for word in word_tokenize(sent)]
-        return words
-    except Exception as e:
-        print("Tokenizer error:", e)
-        return []
+    # Avoid triggering sentence-level tokenization which is causing the error
+    return word_tokenize(text, preserve_line=True)
+
 
 
 # --- Configuration ---
