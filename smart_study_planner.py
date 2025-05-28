@@ -11,18 +11,19 @@ import re
 import numpy as np
 import os # For checking file existence
 
-from nltk.tokenize import word_tokenize
 import nltk
+from nltk.tokenize import word_tokenize
 
-# Ensure proper punkt resource is available
+# Ensure the correct 'punkt' model is downloaded
 try:
-    nltk.data.find("tokenizers/punkt")
+    nltk.data.find('tokenizers/punkt')
 except LookupError:
-    nltk.download("punkt")
+    nltk.download('punkt')
 
 def extract_keywords(text):
-    # Avoid triggering sentence-level tokenization which is causing the error
+    # Use preserve_line=True to avoid sentence tokenization
     return word_tokenize(text, preserve_line=True)
+
 
 
 
