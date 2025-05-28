@@ -13,11 +13,12 @@ import os # For checking file existence
 
 import nltk
 
-# Download stopwords if not already available
+# Ensure necessary NLTK data is downloaded
 nltk.download('stopwords')
+nltk.download('punkt')  # 👈 Add this line
 
 from nltk.corpus import stopwords
-STOPWORDS = set(stopwords.words('english'))
+from nltk.tokenize import word_tokenize
 
 
 # --- Configuration ---
