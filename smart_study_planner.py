@@ -4,27 +4,22 @@ from datetime import datetime, timedelta, date # Ensure 'date' is imported
 from sklearn.model_selection import train_test_split
 from sklearn.linear_model import LogisticRegression
 from sklearn.preprocessing import LabelEncoder
-import nltk
-from nltk.corpus import stopwords
-from nltk.tokenize import word_tokenize
 import re
 import numpy as np
-import os # For checking file existence
+import nltk
+import os
+from nltk.tokenize import word_tokenize
+from nltk.corpus import stopwords
 
-# Download necessary NLTK data files
-nltk.download('punkt')
-nltk.download('stopwords')
+# Set up persistent nltk_data path
+nltk_data_path = os.path.join(os.path.dirname(__file__), 'nltk_data')
+os.makedirs(nltk_data_path, exist_ok=True)
+nltk.data.path.append(nltk_data_path)
 
-# Ensure required NLTK data is available
-try:
-    _ = stopwords.words('english')
-except LookupError:
-    nltk.download('stopwords')
+# Download required datasets into that path
+nltk.download('punkt', download_dir=nltk_data_path)
+nltk.download('stopwords', download_dir=nltk_data_path)
 
-try:
-    _ = word_tokenize("Test sentence.")
-except LookupError:
-    nltk.download('punkt')
 
 # --- Configuration ---
 DATABASE_FILE = 'tasks.csv'
