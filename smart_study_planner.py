@@ -206,7 +206,7 @@ with st.sidebar:
                     new_task = {
                         'Task Name': task_name,
                         'Course': course,
-                        'Due Date': datetime.combine(due_date, datetime.min.time()),
+                        'Due Date': datetime.combine(due_date, datetime()),
                         'Effort': effort,
                         'Type': task_type,
                         'User Priority': user_priority,
