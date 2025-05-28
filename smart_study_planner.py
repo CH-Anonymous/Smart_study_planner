@@ -14,15 +14,15 @@ import os # For checking file existence
 import nltk
 from nltk.tokenize import word_tokenize
 
-# Ensure the correct 'punkt' model is downloaded
+# Ensure punkt is downloaded
 try:
-    nltk.data.find('tokenizers/punkt')
+    nltk.data.find("tokenizers/punkt")
 except LookupError:
-    nltk.download('punkt')
+    nltk.download("punkt")
 
 def extract_keywords(text):
-    # Use preserve_line=True to avoid sentence tokenization
     return word_tokenize(text, preserve_line=True)
+
 
 
 
