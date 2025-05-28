@@ -40,7 +40,7 @@ def load_tasks():
         try:
             df = pd.read_csv(DATABASE_FILE)
             # Ensure correct data types after loading
-            df['Due Date'] = pd.to_datetime(df['Due Date'])
+            df['Due Date'] = pd.to_date(df['Due Date'])
 
             # Add new columns if they don't exist (for backward compatibility)
             if 'Actual_AI_Priority' not in df.columns:
