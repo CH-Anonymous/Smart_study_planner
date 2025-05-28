@@ -4,12 +4,11 @@ from datetime import datetime, timedelta, date # Ensure 'date' is imported
 from sklearn.model_selection import train_test_split
 from sklearn.linear_model import LogisticRegression
 from sklearn.preprocessing import LabelEncoder
-import re
 import numpy as np
 import os # For checking file existence
 import re
 
-# Basic stopwords set to filter out common words
+# Minimal built-in stopword list
 STOPWORDS = {
     'i', 'me', 'my', 'myself', 'we', 'our', 'ours', 'ourselves', 'you', 'your',
     'yours', 'yourself', 'yourselves', 'he', 'him', 'his', 'himself', 'she',
@@ -27,15 +26,8 @@ STOPWORDS = {
 }
 
 def extract_keywords(text):
-    # Use regex to extract words
     words = re.findall(r'\b\w+\b', text.lower())
-    # Filter out stopwords
     return [word for word in words if word not in STOPWORDS]
-
-
-
-
-
 
 
 # --- Configuration ---
