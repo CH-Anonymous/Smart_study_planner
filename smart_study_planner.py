@@ -11,7 +11,7 @@ import re
 # Basic English stopwords list
 STOPWORDS = set([
     "the", "is", "in", "at", "to", "and", "a", "of", "on", "for", "with",
-    "that", "this", "as", "it", "by", "from", "an", "be", "are", "or", "was"
+    "that", "this", "as", "it", "by", "from", "an", "be", "are", "or", "english", "was"
 ])
 
 def extract_keywords(text):
