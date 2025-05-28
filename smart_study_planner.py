@@ -12,16 +12,15 @@ import numpy as np
 import os # For checking file existence
 
 import nltk
-from nltk.tokenize import word_tokenize
+from nltk.corpus import stopwords
 
-# Ensure punkt is downloaded
+# Fix: ensure 'stopwords' is available
 try:
-    nltk.data.find("tokenizers/punkt")
+    nltk.data.find("corpora/stopwords")
 except LookupError:
-    nltk.download("punkt")
+    nltk.download("stopwords")
 
-def extract_keywords(text):
-    return word_tokenize(text, preserve_line=True)
+STOPWORDS = set(stopwords.words('english'))
 
 
 
