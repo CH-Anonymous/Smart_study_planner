@@ -11,12 +11,16 @@ import re
 import numpy as np
 import os # For checking file existence
 
-# Check if stopwords are already downloaded
+# Ensure required NLTK data is available
 try:
-    STOPWORDS = set(stopwords.words('english'))
+    _ = stopwords.words('english')
 except LookupError:
     nltk.download('stopwords')
-    STOPWORDS = set(stopwords.words('english'))
+
+try:
+    _ = word_tokenize("Test sentence.")
+except LookupError:
+    nltk.download('punkt')
 
 # --- Configuration ---
 DATABASE_FILE = 'tasks.csv'
