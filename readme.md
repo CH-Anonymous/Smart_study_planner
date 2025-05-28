@@ -1,4 +1,3 @@
-````markdown
 # Smart Study Planner
 
 A productivity-focused Smart Study Planner application built using **Python** and **Streamlit**. This tool helps users manage and track their study tasks effectively with a clean and intuitive interface.
