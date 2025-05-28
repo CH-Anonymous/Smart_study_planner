@@ -14,18 +14,14 @@ import os # For checking file existence
 import nltk
 from nltk.corpus import stopwords
 from nltk.tokenize import word_tokenize
+from nltk.stem import WordNetLemmatizer
 
-# Automatically download required NLTK data
-nltk.download('punkt', quiet=True)
-nltk.download('stopwords', quiet=True)
-
-
-# Ensure necessary NLTK data is downloaded
+# Download required NLTK data packages
+nltk.download('punkt')
 nltk.download('stopwords')
-nltk.download('punkt')  # 👈 Add this line
+nltk.download('averaged_perceptron_tagger')
+nltk.download('wordnet')
 
-from nltk.corpus import stopwords
-from nltk.tokenize import word_tokenize
 
 
 # --- Configuration ---
