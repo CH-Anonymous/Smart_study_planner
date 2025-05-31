@@ -284,6 +284,8 @@ else:
 st.subheader("Action Center")
 # Use columns for action buttons
 col1, col2 = st.columns(2)
+st.markdown("---")
+
 
 with col1:
     st.markdown("#### ✅ Mark Task as Complete")
