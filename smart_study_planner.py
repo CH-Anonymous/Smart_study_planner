@@ -285,28 +285,6 @@ st.subheader("Action Center")
 # Use columns for action buttons
 col1, col2 = st.columns(2)
 
-st.markdown("---")
-
-st.subheader("💡 Procrastination Nudge")
-st.markdown("Here are some tasks that might need a bit more focus, based on their description and priority:")
-
-procrastination_tasks = []
-if not df_tasks.empty:
-    pending_tasks = df_tasks[df_tasks['Status'] == 'Pending']
-    for index, task in pending_tasks.iterrows():
-        if task['AI Priority'] != 'N/A' and check_for_procrastination(task['Task Name']) and task['AI Priority'] in ['High', 'Medium']:
-            procrastination_tasks.append(task['Task Name'])
-
-    if procrastination_tasks:
-        for task_name in procrastination_tasks:
-            st.warning(f"{task_name}** – This task seems like a 'start' or 'plan' task. Break it down or set a small, actionable goal! 🐢")
-    else:
-        st.info("No immediate signs of procrastination detected among your high-priority tasks. You're crushing it! 🎉")
-else:
-    st.info("Add tasks to see procrastination nudges here!")
-
-st.markdown("---")
-
 with col1:
     st.markdown("#### ✅ Mark Task as Complete")
     # Filter for pending tasks that have not yet provided feedback
