@@ -279,11 +279,7 @@ else:
         height=300 # Adjust height for better display
     )
 
-st.markdown("---")
 
-
-
-st.markdown("---")
 
 st.subheader("Action Center")
 # Use columns for action buttons
